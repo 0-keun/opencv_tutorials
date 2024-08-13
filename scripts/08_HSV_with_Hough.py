@@ -26,6 +26,7 @@ def lane_detect(image):
     edge_image = cv2.Canny(blurred_image, 50, 150)
 
     lines = cv2.HoughLinesP(edge_image,1,np.pi/180,20,minLineLength=30,maxLineGap=200)
+    print(lines)
     line_image = np.zeros_like(image)
 
     if lines is not None:

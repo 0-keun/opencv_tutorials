@@ -7,7 +7,7 @@ PI = 3.1415926
 frameWidth = 640
 frameHeight = 720
 
-def update_perspective(val):
+def update_perspective(val,source):
 
     alpha = (cv2.getTrackbarPos("Alpha", "Result") - 90) * PI / 180
     beta = (cv2.getTrackbarPos("Beta", "Result") - 90) * PI / 180
@@ -55,7 +55,7 @@ def update_perspective(val):
 
     cv2.imshow("Result", destination)
 
-def constant_perspective(val):
+def constant_perspective(val,source):
     alpha = (val[0]- 90) * PI / 180
     beta = (val[1]- 90) * PI / 180
     gamma = (val[2]- 90) * PI / 180
@@ -102,25 +102,26 @@ def constant_perspective(val):
 
     cv2.imshow("Constant_Result", destination)
 
+def display_image():
 
+    source = cv2.imread('./image/road_camera.jpg')  # Replace with your image file path
 
-source = cv2.imread('./image/road_camera.jpg')  # Replace with your image file path
+    cv2.namedWindow("Result", cv2.WINDOW_NORMAL)
+    cv2.namedWindow("Constant_Result", cv2.WINDOW_NORMAL)
 
-cv2.namedWindow("Result", cv2.WINDOW_NORMAL)
-cv2.namedWindow("Constant_Result", cv2.WINDOW_NORMAL)
+    cv2.createTrackbar("Alpha", "Result", 90, 180, update_perspective)
+    cv2.createTrackbar("Beta", "Result", 90, 180, update_perspective)
+    cv2.createTrackbar("Gamma", "Result", 90, 180, update_perspective)
+    cv2.createTrackbar("f", "Result", 500, 2000, update_perspective)
+    cv2.createTrackbar("Distance", "Result", 500, 2000, update_perspective)
 
-cv2.createTrackbar("Alpha", "Result", 90, 180, update_perspective)
-cv2.createTrackbar("Beta", "Result", 90, 180, update_perspective)
-cv2.createTrackbar("Gamma", "Result", 90, 180, update_perspective)
-cv2.createTrackbar("f", "Result", 500, 2000, update_perspective)
-cv2.createTrackbar("Distance", "Result", 500, 2000, update_perspective)
+    # get_parameters
+    update_perspective(0,source)
 
+    # get_BEV_image
+    constant_perspective([10,90,90,500,280],source)
 
-# get_parameters
-update_perspective(0)
-
-# # get_BEV_image
-# constant_perspective([10,90,90,500,280])
+display_image()
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
