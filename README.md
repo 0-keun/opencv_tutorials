@@ -1,7 +1,7 @@
 # opencv_tutorials
 
 ## git clone
-```git
+```bash
 cd catkin_ws/src
 git clone https://github.com/0-keun/opencv_tutorials.git
 ```
