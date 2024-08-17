@@ -13,7 +13,6 @@ from limo_application.cfg import image_processingConfig
 import cv2
 import numpy as np
 
-
 class LaneDetection:
     def __init__(self):
         rospy.init_node("lane_detect")
@@ -36,7 +35,6 @@ class LaneDetection:
         filtered_image = cv2.bitwise_and(image,image,mask=combined_mask)
 
         return filtered_image
-
 
     ## Hough
     def lane_detect(self, image):
@@ -64,7 +62,6 @@ class LaneDetection:
         cv2.imshow("lane_original", self.original_image)
         cv2.imshow("lane_thresholded", self.combined_image)
         cv2.waitKey(1)
-
     
     # ==============================================
     #               Callback Functions

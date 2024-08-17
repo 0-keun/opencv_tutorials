@@ -12,7 +12,8 @@ rotated_image = cv2.warpAffine(image,M,(w,h))
 cv2.imshow('Rotated_image',rotated_image)
 
 # Resize
-resized_image = cv2.resize(image,(300,300))
+size = 300
+resized_image = cv2.resize(image,(size,size))
 cv2.imshow('Resized_image',resized_image)
 
 # Affine Transform

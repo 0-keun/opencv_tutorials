@@ -18,7 +18,10 @@ if lines is not None:
         cv2.line(line_image,(x1,y1),(x2,y2),(0,255,0),1)
 
     combined_image = cv2.addWeighted(image,0.8,line_image, 1, 1)
+    # _combined_image = cv2.add(image,line_image)
+    cv2.imshow('Original_image',image)
     cv2.imshow('Combined_image',combined_image)
+    # cv2.imshow('_Combined_image',_combined_image)
     cv2.waitKey(0) 
     cv2.destroyAllWindows()
 else:
